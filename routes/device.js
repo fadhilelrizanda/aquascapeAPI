@@ -81,3 +81,12 @@ router.delete("/delete/:id", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
+router.delete("/deleteAll", async (req, res) => {
+  try {
+    const result = await deviceModel.deleteMany({});
+    res.send(`${result.deletedCount} documents deleted successfully.`);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
